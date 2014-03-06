@@ -24,8 +24,11 @@ Android-Processing IOIO example using the accelerometer from the Android device 
   * A white ping pong ball to diffuse the light
 
 ### LED wiring
-  * Connect the shorter lead (negative, cathode) of the LED to ground (GND) on the IOIO board
-  * Connect the longer lead (positive, anode) of the LED to the #1 pin on the IOIO board
+  * Connect first lead (#1) of the RGB LED to a 150Ω resistor and then to pin 12 on the IOIO board
+  * Connect the longest lead (#2) (negative, cathode) of the LED to ground (GND) on the IOIO board
+  * Connect third lead (#3) of the RGB LED to a 100Ω resistor and then to pin 13 on the IOIO board
+  * Connect third lead (#3) of the RGB LED to a 100Ω resistor and then to pin 13 on the IOIO board
+<a href="http://imgur.com/qWdZKr2"><img src="http://i.imgur.com/qWdZKr2.jpg" title="RGB LED PINS" /></a>
 
 ## The Code
 
