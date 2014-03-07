@@ -124,11 +124,25 @@ Now we write a function to read the accelerometer data from the Android device, 
 ### Step 6: IOIO thread setup
 The IOIO functionality resides in a separate paralell thread that is structured similarly to the Processing `void setup()` and `void draw()` functions. The IOIO setup is in the `void ioioSetup(IOIO ioio)` function and is basically Java and only executes if it's connected to the IOIO. The function declaration is followed by `throws ConnectionLostException` before the opening curly bracket.
 
-In the IOIO thread setup we link our `ledR`, `ledG` and `ledB` variables to pins 12 (R), 14 (G), and 13 (B) on the board and declare that it is to be used for pulse-width-modulated (PWM) digital output.
+In the IOIO thread setup we link our `ledR`, `ledG` and `ledB` variables to pins 12 (R), 14 (G), and 13 (B) on the board and declare that it is to be used for pulse-width-modulated (PWM) digital output. The `1000` after the pin number sets the number of cycles per second.
 
-**WARNING: Most RGB LEDs are set up so that the Blue anode pin is on the outside, mine happen to have the Green anode pin on the outside, check the documentation for your specific RGB LED to be sure they're correct.**
 ```
   ledR = ioio.openPwmOutput(12, 1000);
   ledG = ioio.openPwmOutput(14, 1000);
   ledB = ioio.openPwmOutput(13, 1000);
+```
+**WARNING: Most RGB LEDs are set up so that the Blue anode pin is on the outside, mine happen to have the Green anode pin on the outside. Check the documentation for your specific RGB LED to be sure you're connecting the right pins.**
+
+### Step 7: IOIO thread loop
+The IOIO thread loop mirrors the functionality of the `void draw()` processing funtion, is also basically Java and also only executes if it's connected to the IOIO. The function declaration is also followed by `throws ConnectionLostException` before the opening curly bracket.
+
+6a. The try block is empty.
+```
+  try {
+  }
+```
+6b. The catch block is an exception handler and throws an error if there is an interruption.
+```
+  catch(InterruptedException e) {
+   }
 ```
