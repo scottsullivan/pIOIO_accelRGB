@@ -50,10 +50,45 @@ import android.bluetooth.*;
 
 ### Step 2: Adding global variables
 Also before the setup loop, we name our LED leads, create variables for the accelerometer and the colors, and set up the Ketai sensor library.
+
+2a. Instantiate the Ketai sensor to read the accelerometer.
 ```
 KetaiSensor sensor;
+```
+2b. Create float variables for our accelerometer axes and their corresponding colors.
+```
 float accelerometerX, accelerometerY, accelerometerZ, colorX, colorY, colorZ;
+```
+2c. Name the our three LED variables and specify that it's a pulse-width-modulated (PWM) digital output.
+```
 PwmOutput ledR, ledG, ledB; 
 ```
 
 ### Step 3: Processing setup
+The setup chunk is ran once at the begining of the sketch and is in the `void setup()` funtion, here we start the PIOIO communication and declare the size of our sketch as well as choose the orientation of our sketch.
+
+3a. Set the size of the Android application, you can specify specific pixel dimensions or have it auto-detect the display width and display height of the device. P3D is the render mode, in case later you need something to be 3D.
+```
+  size(displayWidth, displayHeight, P3D);
+```
+3b. Instantiate Ketai sensor.
+```
+  sensor = new KetaiSensor(this);
+  sensor.start();
+```
+3c. Instantiate pIOIO
+```
+  new PIOIOManager(this).start();
+```
+3c. Set the orientation of the Android application, here it's portrait but you could also choose `orientation(LANDSCAPE)` or not include this if you don't want to lock the orientation.
+```
+  orientation(PORTRAIT);
+```
+3d. Set the text that will be displayed on the screen to be left-aligned and centered vertically.
+```
+  textAlign(LEFT, CENTER);
+```
+3e. Set the size of the text to be 36 pixels.
+```
+  textSize(36);
+```
