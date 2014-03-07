@@ -92,3 +92,24 @@ The setup chunk is ran once at the begining of the sketch and is in the `void se
 ```
   textSize(36);
 ```
+
+### Step 4: Processing draw loop
+The draw loop is run ~60 times per second default and is in the `void draw()` function. In the draw loop, we're setting what draws to the screen and adjusting the color variables.
+
+4a. Update the color variables based on the accelerometer input. The accelerometer on my phone had a range of about -11 to +11. We're re-mapping that input to a range between zero and one using Processing's `map()` functionality.
+```
+  colorX = map(accelerometerX, -11, 11, 0, 1);
+  colorY = map(accelerometerY, -11, 11, 0, 1);
+  colorZ = map(accelerometerZ, -11, 11, 0, 1);
+```
+4b. Change the background color of the Android application based on the color variables. The color variables are multiplied by 255 for 24-bit RGB colors.
+```
+  background(colorX*255, colorY*255, colorZ*255);
+```
+4c. Draw text to the screen. Writing the Red, Green, and Blue values (using `round()` to keep them whole numbers. And displaying the corresponding X, Y, and Z accelerometer inputs using `nfp()` to dynamically adjust the + or - signifier.
+```
+  text(
+    "Red: " + round(colorX * 255) + " x: " + nfp(accelerometerX, 1, 3) + "\n" +
+    "Green: " + round(colorY * 255) + " y: " + nfp(accelerometerY, 1, 3) + "\n" +
+    "Blue: " + round(colorZ * 255) + " z: " + nfp(accelerometerZ, 1, 3), 50, 0, width, height);
+```
