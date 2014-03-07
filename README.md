@@ -30,8 +30,6 @@ Android-Processing IOIO example using the accelerometer from the Android device 
   * Connect third lead (#3) of the RGB LED to a 100Ω resistor and then to pin 13 on the IOIO board
 <a href="http://imgur.com/qWdZKr2"><img src="http://i.imgur.com/qWdZKr2.jpg" title="RGB LED PINS" /></a>
 
-## The Code
-
 ### Step 1: Importing Libraries / Android
 First we have to add appropriate IOIO libraries, Ketai, and parts of the Android API, this happens before the setup loop.
 ```
@@ -112,4 +110,25 @@ The draw loop is run ~60 times per second default and is in the `void draw()` fu
     "Red: " + round(colorX * 255) + " x: " + nfp(accelerometerX, 1, 3) + "\n" +
     "Green: " + round(colorY * 255) + " y: " + nfp(accelerometerY, 1, 3) + "\n" +
     "Blue: " + round(colorZ * 255) + " z: " + nfp(accelerometerZ, 1, 3), 50, 0, width, height);
+```
+
+### Step 5: Reading the accelerometer
+Now we write a function to read the accelerometer data from the Android device, this is a standard Ketai function `void onAccelerometerEvent()` with the variables `float x, float y, float z`.
+
+```
+  accelerometerX = x;
+  accelerometerY = y;
+  accelerometerZ = z;
+```
+
+### Step 6: IOIO thread setup
+The IOIO functionality resides in a separate paralell thread that is structured similarly to the Processing `void setup()` and `void draw()` functions. The IOIO setup is in the `void ioioSetup(IOIO ioio)` function and is basically Java and only executes if it's connected to the IOIO. The function declaration is followed by `throws ConnectionLostException` before the opening curly bracket.
+
+In the IOIO thread setup we link our `ledR`, `ledG` and `ledB` variables to pins 12 (R), 14 (G), and 13 (B) on the board and declare that it is to be used for pulse-width-modulated (PWM) digital output.
+
+**WARNING: Most RGB LEDs are set up so that the Blue anode pin is on the outside, mine happen to have the Green anode pin on the outside, check the documentation for your specific RGB LED to be sure they're correct.**
+```
+  ledR = ioio.openPwmOutput(12, 1000);
+  ledG = ioio.openPwmOutput(14, 1000);
+  ledB = ioio.openPwmOutput(13, 1000);
 ```
