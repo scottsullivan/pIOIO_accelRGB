@@ -155,3 +155,5 @@ Now you should be good to go. Before you run the application be sure to go to th
 <img src="http://i.imgur.com/5WoRRN9.png" title="sketch permissions" />
 
 And that's it! Run the sketch and you should now be able to move your device around and see the color and accelerometer readouts as well as the screen and RGB LED changing color! 
+
+<a href="http://blog.safaribooksonline.com/"><img src="http://i.imgur.com/Br3caNj.jpg" title="Safari Books Online" /></a>
