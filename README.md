@@ -33,8 +33,6 @@ The wiring for this project is a little complicated but not too hard!
   * Connect fourth lead (#4) of the RGB LED to a 100Ω resistor and then to pin 14 on the IOIO board
 <a href="http://imgur.com/AGBUwzz"><img src="http://i.imgur.com/AGBUwzz.jpg" title="RGB LED PINS" /></a>
 
-[Imgur](http://i.imgur.com/AGBUwzz.jpg)
-
 ### Step 1: Importing Libraries / Android
 First we have to add appropriate IOIO libraries, Ketai library and parts of the Android API. Before you can import the PIOIO and Ketai libraries to your Processing sketch, you have to download the libraries from <a href="https://github.com/PinkHatSpike/pioio">here</a> and <a href="https://code.google.com/p/ketai/">here</a> and put them in your libraries folder. After the libraries are in the libraries folder we can bring them in to our project, this happens before the setup loop.
 ```
